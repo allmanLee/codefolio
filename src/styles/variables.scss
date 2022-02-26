@@ -1,1 +1,10 @@
+@import "@/assets/scss/function.scss";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+
+$body-font-family: "pretendard";
 $card-border-radius: 20px !default;
+
+//칩 박스 그룹
+$chip-group-content-padding: 0;
+$chip-group-no-color-focus-opacity: 0;
+$chip-group-no-color-opacity: 0;
