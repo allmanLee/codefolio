@@ -1,13 +1,20 @@
 <template>
-  <div><the-project-list-item></the-project-list-item></div>
+  <v-container>
+    <v-row justify="center">
+      <the-project-list></the-project-list>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import TheProjectListItem from "../components/TheProjectListItem.vue";
+import TheProjectList from "../components/TheProjectList.vue";
 export default {
   name: "Main",
   components: {
-    TheProjectListItem,
+    TheProjectList,
+  },
+  data() {
+    return {};
   },
 };
 </script>
