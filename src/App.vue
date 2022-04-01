@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <v-header></v-header>
+    <v-header><appheader></appheader></v-header>
     <v-main class="main">
       <router-view></router-view>
     </v-main>
@@ -8,14 +8,23 @@
   </v-app>
 </template>
 <script>
+import appheader from "./components/appHeader";
+
 export default {
   name: "App",
+  components: { appheader },
+  data() {
+    return {
+      //
+    };
+  },
 };
 </script>
 <style lang="scss" scope>
 v-header {
-  height: 60px !important;
+  height: 80px !important;
 }
+
 .main {
   margin: 20px;
 }
