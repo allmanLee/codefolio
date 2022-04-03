@@ -1,10 +1,10 @@
 <template>
-  <v-card max-width="374px">
-    <v-img
+  <v-card width="calc(1120px / 3)" class="project-item-card">
+    <div class="item-card__hover"></div>
+    <img
       height="240px"
       src="https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg"
-    >
-    </v-img>
+    />
 
     <v-card-text class="card-text">
       <v-chip-group class="tag-bar">
@@ -13,7 +13,7 @@
         <v-chip class="tag-chip" color="#CD6799">Sass</v-chip>
         <v-chip class="tag-chip tag-chip-number">+3</v-chip>
       </v-chip-group>
-      <v-card-title class="pa-6 py-0 pb- card-title text--primary">
+      <v-card-title class="pa-6 py-0 card-title text--primary">
         Bixbar: 박스비 칵테일 추천 캡슐
       </v-card-title>
       <v-card-subtitle class="pa-6 py-0 ma-0 text--disabled">
@@ -52,7 +52,15 @@ export default {};
 
 <style lang="scss" scoped>
 .project-item-card {
-  height: 440px;
+  position: relative;
+  overflow: hidden;
+  .item-card__hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+    z-index: 10;
+  }
 }
 .card-text {
   padding: 0px;
