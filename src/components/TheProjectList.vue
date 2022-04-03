@@ -1,15 +1,9 @@
 <template>
-  <div>
-    <v-row>
-      <v-col>전체 (32)</v-col>
-      <v-col align="end"> 좋아요순 <v-icon>mdi-menu-down</v-icon> </v-col>
-    </v-row>
-    <v-row>
-      <v-col v-for="(item, index) of items" :key="index">
-        <the-project-list-item></the-project-list-item>
-      </v-col>
-    </v-row>
-  </div>
+  <ul>
+    <li v-for="(item, index) in items" :key="index">
+      <the-project-list-item></the-project-list-item>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -21,10 +15,38 @@ export default {
   },
   data() {
     return {
-      items: [1, 2, 3, 4],
+      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     };
+  },
+  methods: {
+    listPadding(index) {
+      return (index + 1) % 3 === 0 ? "pr-0" : "pr-10";
+    },
+    listInclude(index) {
+      console.log(index);
+      if (this.items.length % 3 > 0) {
+        console.log(this.items.length % 3);
+        this.items.length;
+      }
+    },
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+ul {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0px;
+  li {
+    display: block;
+    list-style-type: none;
+    height: auto;
+    //isplay: flex;
+  }
+}
+</style>
