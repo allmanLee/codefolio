@@ -20,8 +20,8 @@
       <p class="list-title">전체 (32)</p>
       <v-select
         class="list-cate-select"
-        :items="items"
-        label="Solo field"
+        v-model="selectedCate"
+        :items="cates"
         solo
       ></v-select>
     </div>
@@ -41,7 +41,10 @@ export default {
     TheMainSkillBar,
   },
   data() {
-    return {};
+    return {
+      cates: ["좋아요순", "최신순"],
+      selectedCate: "좋아요순",
+    };
   },
 };
 </script>

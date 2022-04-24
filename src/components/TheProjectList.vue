@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="(item, index) in items" :key="index">
+    <li v-for="(item, index) in projects" :key="index">
       <the-project-list-item></the-project-list-item>
     </li>
   </ul>
@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      projects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     };
   },
   methods: {
@@ -24,9 +24,9 @@ export default {
     },
     listInclude(index) {
       console.log(index);
-      if (this.items.length % 3 > 0) {
-        console.log(this.items.length % 3);
-        this.items.length;
+      if (this.projects.length % 3 > 0) {
+        console.log(this.projects.length % 3);
+        this.projects.length;
       }
     },
   },
