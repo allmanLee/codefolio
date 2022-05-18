@@ -1,7 +1,7 @@
 <template>
   <v-container class="project-detail">
     <section class="project-detail-container">
-      <project-detail-profile-card class="profile-detail" />
+      <profile-detail-card class="profile-detail" />
       <project-detail-info class="profile-info" />
     </section>
     <section class="detail-image-container">
@@ -11,15 +11,16 @@
 </template>
 
 <script>
+import ProfileDetailCard from "../../components/ProfileDetailCard.vue";
 import ProjectDetailImages from "../../components/ProjectDetail/ProjectDetailImages.vue";
 import ProjectDetailInfo from "../../components/ProjectDetail/ProjectDetailInfo.vue";
-import ProjectDetailProfileCard from "../../components/ProjectDetail/ProjectDetailProfileCard.vue";
+
 export default {
   name: "ProjectDetail",
   components: {
-    ProjectDetailProfileCard,
     ProjectDetailInfo,
     ProjectDetailImages,
+    ProfileDetailCard,
   },
 };
 </script>

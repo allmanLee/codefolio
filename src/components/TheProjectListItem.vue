@@ -1,6 +1,6 @@
 <template>
   <div class="project-list-item" @click="clickHandler">
-    <v-card flat class="project-item-card" @mouseover="isHoveredCard = true">
+    <v-card flat class="project-item-card">
       <v-card-text class="card-text">
         <v-img
           class="thumbnail-image"
@@ -44,16 +44,6 @@
         </v-card-actions>
       </v-card-text>
     </v-card>
-    <transition name="fade">
-      <div
-        @mouseleave="isHoveredCard = false"
-        v-show="isHoveredCard"
-        class="hover-wrapper"
-        width="calc(1120px / 3)"
-      >
-        <v-icon class="like-icon"> mdi-heart-outline </v-icon>
-      </div>
-    </transition>
   </div>
 </template>
 <script>
@@ -62,17 +52,9 @@ export default {
   components: { SkillTagChips },
   name: "TheProjectListItem",
   data() {
-    return {
-      isHoveredCard: false,
-    };
+    return {};
   },
   methods: {
-    cardMouseOverHandler() {
-      this.isHoveredCard = true;
-    },
-    cardMouseLeaveHandler() {
-      this.isHoveredCard = false;
-    },
     clickHandler() {
       console.log("@click");
       this.$router.push({ path: "/project-detail/2" });
@@ -87,11 +69,30 @@ export default {
   .project-item-card {
     position: relative;
     border-radius: 20px;
-    .item-card__hover {
+
+    &:hover::after {
+      content: "";
       position: absolute;
+      top: 0px !important;
+      left: 0px;
       width: 100%;
       height: 100%;
-      z-index: 10;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border: solid white 2px;
+    }
+    &:hover::before {
+      content: "";
+      position: absolute;
+      display: block;
+      top: 8px;
+      right: 8px;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+      background: url("../assets/icon/heart-icon-white.png") no-repeat;
+      background-position: center;
+      z-index: 200;
     }
     .thumbnail-image {
       border-top-left-radius: 20px;
@@ -103,24 +104,6 @@ export default {
   .card-text {
     padding: 0px;
     background: rgba(255, 255, 255, 0.08);
-  }
-
-  .hover-wrapper {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    background: rgba(0, 0, 0, 0.4);
-    border: solid white 2px;
-    .like-icon {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      width: 60px;
-      height: 60px;
-      font-size: 30px;
-    }
   }
 }
 //fade transition

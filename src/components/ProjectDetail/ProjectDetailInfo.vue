@@ -1,6 +1,6 @@
 <template>
   <v-card class="project-detail-info" flat>
-    <skill-tag-chips></skill-tag-chips>
+    <skill-tag-chip></skill-tag-chip>
     <section class="project-detail">
       <h3 class="project-title">Bixbar: 빅스비 칵테일 추천 캘슐</h3>
       <p class="proeject-description">
@@ -13,18 +13,17 @@
     </section>
     <footer>
       <button class="solid-button">데모사이트로 이동</button>
-      <button class="solid-button button-github">
-        <i class="github-icon" /><span>Repository로 이동</span>
-      </button>
+      <app-git-button title="Repository로 이동"></app-git-button>
     </footer>
   </v-card>
 </template>
 
 <script>
-import SkillTagChips from "../SkillTagChips.vue";
+import AppGitButton from "../common/buttons/AppGitButton.vue";
+import SkillTagChip from "../SkillTagChips.vue";
 export default {
   name: "ProjectDetailInfo",
-  components: { SkillTagChips },
+  components: { SkillTagChip, AppGitButton },
 };
 </script>
 
@@ -49,24 +48,7 @@ export default {
   footer {
     margin-left: 20px;
     margin-top: 54px;
-    .button-github {
-      .github-icon {
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 8px;
-        width: 22px;
-        height: 22px;
-        -webkit-mask-image: url("../../assets/img/gitub-icon.svg");
-        mask-image: url("../../assets/img/gitub-icon.svg");
-        mask-size: contain;
-        // background-image: url("../../assets/img/gitub-icon.svg");
-        background-size: contain;
-        background-color: white;
-      }
-      &:hover .github-icon {
-        background-color: black;
-      }
-    }
+
     .solid-button {
       margin-right: 20px;
     }

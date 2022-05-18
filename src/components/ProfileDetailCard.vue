@@ -22,21 +22,56 @@
         <button class="outline-button">팔로우</button>
       </div>
     </section>
+    <section
+      class="profile-info-detail-container"
+      v-if="$route.name === 'profileDetail'"
+    >
+      <app-git-button title="Github으로 이동"></app-git-button>
+      <skill-tag-chips class="skill-tag-chips"></skill-tag-chips>
+    </section>
+    <section
+      class="profile-info-detail-container"
+      v-if="$route.name === 'profileDetail'"
+    >
+      <div class="profile-detail-info">
+        <dl
+          class="profile-detail-info-item"
+          v-for="data in columnsProfileInfo"
+          :key="data.key"
+        >
+          <dt class="profile-detail-info-title">{{ data.label }}</dt>
+          <dd class="rpfile-detail-info-description">{{ data.value }}</dd>
+        </dl>
+      </div>
+    </section>
   </v-card>
 </template>
 
 <script>
+import AppGitButton from "./common/buttons/AppGitButton.vue";
+import SkillTagChips from "./SkillTagChips.vue";
+
 export default {
-  name: "ProjectDetailProfileCard",
+  components: { AppGitButton, SkillTagChips },
+  name: "ProfileDetailCard",
+  data() {
+    return {
+      columnsProfileInfo: [
+        { key: "projectView", label: "전체 프로젝트 뷰", value: "13" },
+        { key: "numberLikes", label: "전체 좋아요 수", value: "1234" },
+        { key: "follower", label: "팔로워 수", value: "14" },
+        { key: "folloing", label: "팔로잉 수", value: "332" },
+      ],
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .project-detail-profile-card {
   width: 400px;
-  height: 400px;
+  min-height: 400px;
   max-width: 400px;
-  max-height: 400px;
   padding: 40px;
   background-color: rgba(255, 255, 255, 0.08);
   .profile-container {
@@ -83,11 +118,39 @@ export default {
       }
     }
   }
+  .profile-info-detail-container {
+    display: inline-block;
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+    .skill-tag-chips {
+      display: flex;
+      align-content: center;
+    }
+    .profile-detail-info {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: rem-calc(16px);
+
+      .profile-detail-info-item {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  }
   .footer {
     .button-group {
       display: flex;
       justify-content: center;
     }
+  }
+}
+</style>
+<style lang="scss">
+.profile-info-detail-container {
+  .v-slide-group__content {
+    display: unset;
   }
 }
 </style>
