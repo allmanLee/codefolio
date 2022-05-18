@@ -11,16 +11,16 @@
 </template>
 
 <script>
-import ProfileDetailCard from "../../components/ProfileDetailCard.vue";
-import ProjectDetailImages from "../../components/ProjectDetail/ProjectDetailImages.vue";
-import ProjectDetailInfo from "../../components/ProjectDetail/ProjectDetailInfo.vue";
+import ProfileDetailCard from "../../components/profile/ProfileDetailCard.vue";
+import ProjectDetailImages from "../../components/projectDetail/ProjectDetailImages.vue";
+import ProjectDetailInfo from "../../components/projectDetail/ProjectDetailInfo.vue";
 
 export default {
   name: "ProjectDetail",
   components: {
+    ProfileDetailCard,
     ProjectDetailInfo,
     ProjectDetailImages,
-    ProfileDetailCard,
   },
 };
 </script>
@@ -35,8 +35,6 @@ export default {
     }
     &.detail-image-container {
       width: 100%;
-    }
-    .profile-info {
     }
   }
 }

@@ -30,16 +30,12 @@
 </template>
 
 <script>
+import TheProjectList from "../components/projectList/TheProjectList.vue";
 import TheMainSkillBar from "../components/TheMainSkillBar.vue";
-import TheProjectList from "../components/TheProjectList.vue";
 import TheSearchBar from "../components/TheSearchBar.vue";
 export default {
   name: "Main",
-  components: {
-    TheProjectList,
-    TheSearchBar,
-    TheMainSkillBar,
-  },
+  components: { TheMainSkillBar, TheSearchBar, TheProjectList },
   data() {
     return {
       cates: ["좋아요순", "최신순"],

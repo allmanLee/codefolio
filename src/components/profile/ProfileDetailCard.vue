@@ -48,12 +48,11 @@
 </template>
 
 <script>
-import AppGitButton from "./common/buttons/AppGitButton.vue";
-import SkillTagChips from "./SkillTagChips.vue";
-
+import SkillTagChips from "../SkillTagChips.vue";
+import AppGitButton from "../common/buttons/AppGitButton.vue";
 export default {
-  components: { AppGitButton, SkillTagChips },
-  name: "ProfileDetailCard",
+  components: { SkillTagChips, AppGitButton },
+  name: "Profil eDetailCard",
   data() {
     return {
       columnsProfileInfo: [
@@ -85,8 +84,6 @@ export default {
       width: 80px;
       height: 80px;
       margin-bottom: 12px;
-      .profile-info-image {
-      }
     }
     .profile-info-container {
       display: inline-block;

@@ -47,7 +47,8 @@
   </div>
 </template>
 <script>
-import SkillTagChips from "./SkillTagChips.vue";
+import SkillTagChips from "../SkillTagChips.vue";
+
 export default {
   components: { SkillTagChips },
   name: "TheProjectListItem",
@@ -90,7 +91,7 @@ export default {
       width: 60px;
       height: 60px;
       font-size: 30px;
-      background: url("../assets/icon/heart-icon-white.png") no-repeat;
+      background: url("../../assets/icon/heart-icon-white.png") no-repeat;
       background-position: center;
       z-index: 200;
     }
