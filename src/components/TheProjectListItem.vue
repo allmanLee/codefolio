@@ -1,21 +1,13 @@
 <template>
-  <div class="project-list-item">
-    <v-card
-      width="calc(1120px / 3)"
-      class="project-item-card"
-      @mouseover="isHoveredCard = true"
-    >
+  <div class="project-list-item" @click="clickHandler">
+    <v-card flat class="project-item-card" @mouseover="isHoveredCard = true">
       <v-card-text class="card-text">
         <v-img
           class="thumbnail-image"
           src="https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg"
         />
-        <v-chip-group class="tag-bar">
-          <v-chip class="tag-chip" color="#61DAFB">React</v-chip>
-          <v-chip class="tag-chip" color="#41B883">Vue</v-chip>
-          <v-chip class="tag-chip" color="#CD6799">Sass</v-chip>
-          <v-chip class="tag-chip tag-chip-number">+3</v-chip>
-        </v-chip-group>
+        <skill-tag-chips></skill-tag-chips>
+
         <v-card-title class="pa-6 py-0 card-title text--primary">
           Bixbar: 박스비 칵테일 추천 캡슐
         </v-card-title>
@@ -57,6 +49,7 @@
         @mouseleave="isHoveredCard = false"
         v-show="isHoveredCard"
         class="hover-wrapper"
+        width="calc(1120px / 3)"
       >
         <v-icon class="like-icon"> mdi-heart-outline </v-icon>
       </div>
@@ -64,7 +57,9 @@
   </div>
 </template>
 <script>
+import SkillTagChips from "./SkillTagChips.vue";
 export default {
+  components: { SkillTagChips },
   name: "TheProjectListItem",
   data() {
     return {
@@ -78,6 +73,10 @@ export default {
     cardMouseLeaveHandler() {
       this.isHoveredCard = false;
     },
+    clickHandler() {
+      console.log("@click");
+      this.$router.push({ path: "/project-detail/2" });
+    },
   },
 };
 </script>
@@ -88,7 +87,6 @@ export default {
   .project-item-card {
     position: relative;
     border-radius: 20px;
-
     .item-card__hover {
       position: absolute;
       width: 100%;
@@ -107,18 +105,6 @@ export default {
     background: rgba(255, 255, 255, 0.08);
   }
 
-  .tag-bar {
-    padding: rem-calc(24px);
-    padding-bottom: rem-calc(12px);
-    line-height: 100%;
-
-    .tag-chip-number {
-      opacity: 0.5;
-      padding: 0px;
-      text-align: left;
-      background: none !important;
-    }
-  }
   .hover-wrapper {
     position: absolute;
     top: 0px;
