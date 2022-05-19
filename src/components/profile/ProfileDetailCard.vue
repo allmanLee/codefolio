@@ -78,6 +78,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .profile-info-image-container {
       border: 2px solid white;
       border-radius: 1000px;

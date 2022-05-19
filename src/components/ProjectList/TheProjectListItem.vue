@@ -14,7 +14,10 @@
         <v-card-subtitle class="pa-6 py-0 ma-0 text--disabled">
           칵테일 추천 서비스 입니다.
         </v-card-subtitle>
-        <v-card-actions class="py-6 pa-0">
+        <v-card-actions
+          class="py-6 pa-0"
+          v-if="!$route.name === 'profile-detail'"
+        >
           <v-list-item class="px-6 grow">
             <v-list-item-avatar class="ma-0 mr-2" color="grey darken-3">
               <v-img
@@ -105,17 +108,7 @@ export default {
   .card-text {
     padding: 0px;
     background: rgba(255, 255, 255, 0.08);
+    min-height: 400px;
   }
-}
-//fade transition
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s;
-}
-/* .fade-leave-active below version 2.1.8 */
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

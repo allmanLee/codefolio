@@ -17,8 +17,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .project-detail-container {
   display: flex;
+  gap: 40px;
+  align-items: flex-start;
 }
 </style>
