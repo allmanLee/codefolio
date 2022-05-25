@@ -1,28 +1,23 @@
 <template>
-  <div class="project-list-item">
-    <v-card
-      width="calc(1120px / 3)"
-      class="project-item-card"
-      @mouseover="isHoveredCard = true"
-    >
+  <div class="project-list-item" @click="clickHandler">
+    <v-card flat class="project-item-card">
       <v-card-text class="card-text">
         <v-img
           class="thumbnail-image"
           src="https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg"
         />
-        <v-chip-group class="tag-bar">
-          <v-chip class="tag-chip" color="#61DAFB">React</v-chip>
-          <v-chip class="tag-chip" color="#41B883">Vue</v-chip>
-          <v-chip class="tag-chip" color="#CD6799">Sass</v-chip>
-          <v-chip class="tag-chip tag-chip-number">+3</v-chip>
-        </v-chip-group>
+        <skill-tag-chips></skill-tag-chips>
+
         <v-card-title class="pa-6 py-0 card-title text--primary">
           Bixbar: 박스비 칵테일 추천 캡슐
         </v-card-title>
         <v-card-subtitle class="pa-6 py-0 ma-0 text--disabled">
           칵테일 추천 서비스 입니다.
         </v-card-subtitle>
-        <v-card-actions class="py-6 pa-0">
+        <v-card-actions
+          class="py-6 pa-0"
+          v-if="!$route.name === 'profile-detail'"
+        >
           <v-list-item class="px-6 grow">
             <v-list-item-avatar class="ma-0 mr-2" color="grey darken-3">
               <v-img
@@ -52,31 +47,21 @@
         </v-card-actions>
       </v-card-text>
     </v-card>
-    <transition name="fade">
-      <div
-        @mouseleave="isHoveredCard = false"
-        v-show="isHoveredCard"
-        class="hover-wrapper"
-      >
-        <v-icon class="like-icon"> mdi-heart-outline </v-icon>
-      </div>
-    </transition>
   </div>
 </template>
 <script>
+import SkillTagChips from "../SkillTagChips.vue";
+
 export default {
+  components: { SkillTagChips },
   name: "TheProjectListItem",
   data() {
-    return {
-      isHoveredCard: false,
-    };
+    return {};
   },
   methods: {
-    cardMouseOverHandler() {
-      this.isHoveredCard = true;
-    },
-    cardMouseLeaveHandler() {
-      this.isHoveredCard = false;
+    clickHandler() {
+      console.log("@click");
+      this.$router.push({ path: "/project-detail/2" });
     },
   },
 };
@@ -89,11 +74,29 @@ export default {
     position: relative;
     border-radius: 20px;
 
-    .item-card__hover {
+    &:hover::after {
+      content: "";
       position: absolute;
+      top: 0px !important;
+      left: 0px;
       width: 100%;
       height: 100%;
-      z-index: 10;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border: solid white 2px;
+    }
+    &:hover::before {
+      content: "";
+      position: absolute;
+      display: block;
+      top: 8px;
+      right: 8px;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+      background: url("../../assets/icon/heart-icon-white.png") no-repeat;
+      background-position: center;
+      z-index: 200;
     }
     .thumbnail-image {
       border-top-left-radius: 20px;
@@ -105,47 +108,7 @@ export default {
   .card-text {
     padding: 0px;
     background: rgba(255, 255, 255, 0.08);
+    min-height: 400px;
   }
-
-  .tag-bar {
-    padding: rem-calc(24px);
-    padding-bottom: rem-calc(12px);
-    line-height: 100%;
-
-    .tag-chip-number {
-      opacity: 0.5;
-      padding: 0px;
-      text-align: left;
-      background: none !important;
-    }
-  }
-  .hover-wrapper {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    background: rgba(0, 0, 0, 0.4);
-    border: solid white 2px;
-    .like-icon {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      width: 60px;
-      height: 60px;
-      font-size: 30px;
-    }
-  }
-}
-//fade transition
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s;
-}
-/* .fade-leave-active below version 2.1.8 */
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
