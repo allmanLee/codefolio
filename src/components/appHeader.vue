@@ -1,6 +1,6 @@
 <template>
-  <nav>
-    <v-toolbar color="black" class="headerbar">
+  <nav class="headerbar-wrap">
+    <v-toolbar class="headerbar" flat>
       <v-toolbar-title>
         <span class="font-weight-bold white--text header-logo">codefolio</span>
       </v-toolbar-title>
@@ -22,20 +22,27 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.headerbar {
-  padding: 0 40px;
-}
-.header-logo {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 30px;
-}
-.upload-btn {
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
+<style lang="scss" scoped>
+.headerbar-wrap {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  .headerbar {
+    padding: 0 40px;
+    background-color: $app-background-color !important;
+    .upload-btn {
+      font-family: "Pretendard";
+      font-style: normal;
+      font-weight: 600;
+      font-size: rem-calc(14px);
+      line-height: 17px;
+    }
+    .header-logo {
+      font-family: "Orbitron";
+      font-weight: 500;
+      font-size: rem-calc(24px);
+      line-height: 30px;
+    }
+  }
 }
 </style>
