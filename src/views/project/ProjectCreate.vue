@@ -1,7 +1,6 @@
 <template>
   <v-container class="proeject-create">
     <div class="df">
-      <app-taps-slide></app-taps-slide>
       <v-card class="project-create-card">
         <div v-for="item in projectCreateColumn" :key="item.bindKey">
           <app-register-content
@@ -21,8 +20,20 @@
         </div>
         <section class="project-detail"></section>
       </v-card>
-      <v-card class="project-create-card">
-        <project-create-image></project-create-image>
+      <v-card
+        v-for="(item, index) of projectDetailImages"
+        :key="item.url + index"
+        class="project-create-card project-detail-image"
+      >
+        <project-create-image
+          :index="item.index"
+          :imageUrl="item.url"
+          :isExitImage="item.isExitImage"
+          :modifiable="true"
+          @selectImage="addImageItem"
+          @updateImage="updateImageItem"
+          @cancleSelectedImage="deleteImageItem"
+        ></project-create-image>
       </v-card>
     </div>
   </v-container>
@@ -30,28 +41,75 @@
 
 <script>
 import AppRegisterContent from "../../components/common/list/AppRegisterContent.vue";
-import AppTapsSlide from "../../components/common/tab/AppTapsSlide.vue";
 import ProjectCreateImage from "../../components/projectCreate/ProjectCreateImage.vue";
 import SkillTagAddIcon from "../../components/SkillTagAddIcon.vue";
 import SkillTagChips from "../../components/SkillTagChips.vue";
+import { groupBy } from "lodash";
 export default {
   components: {
     SkillTagChips,
     SkillTagAddIcon,
     AppRegisterContent,
     ProjectCreateImage,
-    AppTapsSlide,
   },
   name: "ProjectCreate",
+  created() {
+    console.log(this.projectDetailImages);
+  },
+  methods: {
+    addImageItem(val) {
+      console.log("해당 객체를 URL 에 추가", val);
+      if (this.projectDetailImages[val.index]) {
+        //카드의 속성을 수정합니다.
+        this.projectDetailImages[val.index].url = val.url;
+        this.projectDetailImages[val.index].isExitImage = val.isExit;
+
+        //변경이 아닌 추가시에만 새로운 생성카드를 만듭니다.
+        if (this.projectDetailImages[val.index].isExitImage) {
+          console.log("배열로 새로운 인자를 추가합니다.");
+          this.projectDetailImages.push({
+            index: this.projectDetailImages.length,
+            isExitImage: false,
+            url: "",
+          });
+        }
+        this.$forceUpdate();
+      }
+    },
+    updateImageItem(val) {
+      this.projectDetailImages[val.index].url = val.url;
+      this.projectDetailImages[val.index].isExitImage = val.isExit;
+    },
+    deleteImageItem(val) {
+      console.log("삭제한 키 값:", val.index);
+      //해당 키(인덱스)를 가진 값을 삭제합니다.
+      const groupedImages = groupBy(this.projectDetailImages, "index");
+      delete groupedImages[val.index];
+      console.log(groupedImages);
+      //배열를 바꿔줍니다.
+      this.projectDetailImages = [];
+      this.$forceUpdate();
+      setTimeout(() => {
+        this.projectDetailImages = Object.values(groupedImages).flat();
+      }, 200);
+      this.$forceUpdate();
+    },
+  },
   data: function () {
     return {
+      projectDetailImages: [
+        {
+          index: 0,
+          isExitImage: false,
+          url: "",
+        },
+      ],
       projectCreateColumn: [
         {
           label: "기술스택",
           inputType: "",
           bindKey: "skill",
         },
-
         {
           label: "프로젝트 제목",
           inputType: "text",
@@ -92,9 +150,9 @@ export default {
 <style lang="scss" scoped>
 .proeject-create {
   padding: 0px;
+  margin-top: 80px;
   .project-create-card {
     padding: 40px;
-    width: 100%;
     background-color: rgba(255, 255, 255, 0.08);
     box-shadow: none;
     .skill-tag-chips {
@@ -119,6 +177,10 @@ export default {
       left: 24px;
       right: 24px;
     }
+  }
+  .project-detail-image {
+    margin-top: 20px;
+    padding: 0px;
   }
 }
 </style>

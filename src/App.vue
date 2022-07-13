@@ -3,7 +3,7 @@
     id="app"
     :style="{ background: $vuetify.theme.themes.dark.background }"
   >
-    <v-header><appheader></appheader></v-header>
+    <appheader></appheader>
     <v-main class="main">
       <router-view></router-view>
     </v-main>

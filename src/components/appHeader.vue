@@ -5,7 +5,13 @@
         <span class="font-weight-bold white--text header-logo">codefolio</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn outlined rounded color="white" class="upload-btn">
+      <v-btn
+        outlined
+        rounded
+        color="white"
+        class="upload-btn"
+        @click="handleClickCreateProject"
+      >
         <v-icon dark> mdi-plus </v-icon>프로젝트 등록
       </v-btn>
     </v-toolbar>
@@ -18,6 +24,12 @@ export default {
     return {
       drawer: true,
     };
+  },
+  methods: {
+    handleClickCreateProject() {
+      console.log("asdf");
+      this.$router.push({ name: "projectCreate" });
+    },
   },
 };
 </script>
