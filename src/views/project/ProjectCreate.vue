@@ -26,7 +26,8 @@
         class="project-create-card project-detail-image"
       >
         <project-create-image
-          :index="item.index"
+          :index="index"
+          :imageIdx="item.index"
           :imageUrl="item.url"
           :isExitImage="item.isExitImage"
           :modifiable="true"
@@ -92,6 +93,8 @@ export default {
       setTimeout(() => {
         this.projectDetailImages = Object.values(groupedImages).flat();
       }, 200);
+
+      //삭제한 아이템 뒤쪽의 아이템의 인덱스를 모두바꾸어준다.
       this.$forceUpdate();
     },
   },

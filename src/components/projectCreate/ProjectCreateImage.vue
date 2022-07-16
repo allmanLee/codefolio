@@ -47,6 +47,10 @@ export default {
       type: Number,
       default: 0,
     },
+    imageIdx: {
+      type: Number,
+      default: 0,
+    },
     modifiable: {
       type: Boolean,
       default: false,
