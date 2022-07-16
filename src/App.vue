@@ -3,19 +3,30 @@
     id="app"
     :style="{ background: $vuetify.theme.themes.dark.background }"
   >
-    <v-header> </v-header>
-    <router-view></router-view>
+    <appheader></appheader>
+    <v-main class="main">
+      <router-view></router-view>
+    </v-main>
+    <v-footer></v-footer>
   </v-app>
 </template>
 <script>
+import appheader from "./components/appHeader";
+
 export default {
   name: "App",
+  components: { appheader },
+  data() {
+    return {
+      //
+    };
+  },
 };
 </script>
 <style lang="scss" scope>
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap");
 v-header {
-  height: 60px !important;
+  height: 80px !important;
 }
 .banner {
   position: relative;
@@ -71,5 +82,9 @@ v-header {
       }
     }
   }
+}
+
+.main {
+  margin: 20px;
 }
 </style>

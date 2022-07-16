@@ -20,8 +20,8 @@
       <p class="list-title">전체 (32)</p>
       <v-select
         class="list-cate-select"
-        :items="items"
-        label="Solo field"
+        v-model="selectedCate"
+        :items="cates"
         solo
       ></v-select>
     </div>
@@ -30,18 +30,17 @@
 </template>
 
 <script>
+import TheProjectList from "../components/projectList/TheProjectList.vue";
 import TheMainSkillBar from "../components/TheMainSkillBar.vue";
-import TheProjectList from "../components/TheProjectList.vue";
 import TheSearchBar from "../components/TheSearchBar.vue";
 export default {
   name: "Main",
-  components: {
-    TheProjectList,
-    TheSearchBar,
-    TheMainSkillBar,
-  },
+  components: { TheMainSkillBar, TheSearchBar, TheProjectList },
   data() {
-    return {};
+    return {
+      cates: ["좋아요순", "최신순"],
+      selectedCate: "좋아요순",
+    };
   },
 };
 </script>
