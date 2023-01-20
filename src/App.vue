@@ -85,6 +85,6 @@ v-header {
 }
 
 .main {
-  margin: 20px;
+  margin: 120px;
 }
 </style>

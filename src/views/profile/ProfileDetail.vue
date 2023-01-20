@@ -10,7 +10,7 @@
 
 <script>
 import ProfileDetailCard from "../../components/profile/ProfileDetailCard.vue";
-import TheProjectList from "../../components/projectList/TheProjectList.vue";
+import TheProjectList from "../../components/ProjectList/TheProjectList.vue";
 
 export default {
   components: { TheProjectList, ProfileDetailCard },

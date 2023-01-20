@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import TheProjectList from "../components/projectList/TheProjectList.vue";
+import TheProjectList from "../components/ProjectList/TheProjectList.vue";
 import TheMainSkillBar from "../components/TheMainSkillBar.vue";
 import TheSearchBar from "../components/TheSearchBar.vue";
 export default {
